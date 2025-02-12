@@ -56,11 +56,8 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
           name: CCTV_Viewer_${{ env.SHORT_SHA }}-X5
-          path: ./app/build/outputs/apk/debug/app-debug.apk
-    - uses: actions/upload-artifact@v4
-      with:
-          name: CCTV_Viewer_${{ env.SHORT_SHA }}
-          path: ./app/build/outputs/apk/debug/app-debug.apk
+          path: ./app/build/outputs/apk/debug/app-x5.apk
+   
     
     - name: Create Release
       id: create_release
@@ -87,4 +84,14 @@ jobs:
         asset_path: ./app/build/outputs/apk/debug/app-debug.apk # APK文件路径
         asset_name: app-debug.apk # 上传到GitHub的APK文件名
         asset_content_type: application/zip # APK文件类型，虽然这里是application/zip，实际上应该是application/vnd.android.package-archive，但actions/upload-release-asset在某些情况下可能不正确识别APK类型，所以这里使用zip类型通常也能工作。你可以尝试改为application/vnd.android.package-archive试试看。
+	- name: Upload X5 APK
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # 上传URL从创建发布步骤获取
+        asset_path: ./app/build/outputs/apk/debug/app-x5.apk # APK文件路径
+        asset_name: app-x5.apk # 上传到GitHub的APK文件名
+        asset_content_type: application/zip 
   
