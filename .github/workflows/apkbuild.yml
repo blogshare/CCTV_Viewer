@@ -32,13 +32,13 @@ jobs:
           name: CCTV_Viewer_${{ env.SHORT_SHA }}
           path: ./app/build/outputs/apk/debug/app-debug.apk
 	
-	- name: Get git log
+    - name: Get git log
       id: git_log
       run: |
             updateLog=`git log --pretty=format:"%s" -1`
             echo "updateLog=$updateLog" >> $GITHUB_ENV
 	
-	- name: Create Release
+    - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
