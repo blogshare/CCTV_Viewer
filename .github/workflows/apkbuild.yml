@@ -62,7 +62,6 @@ jobs:
         asset_path: ./app/build/outputs/apk/debug/app-debug.apk # APK文件路径
         asset_name: app-nox5.apk # 上传到GitHub的APK文件名
         asset_content_type: application/zip
-	
   build-X5:
 
     runs-on: ubuntu-latest
