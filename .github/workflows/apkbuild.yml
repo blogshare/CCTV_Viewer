@@ -88,26 +88,6 @@ jobs:
       with:
           name: CCTV_Viewer_${{ env.SHORT_SHA }}-X5
           path: ./app/build/outputs/apk/debug/app-debug.apk
-     
-    - name: Get git log
-      id: git_log
-      run: |
-            updateLog=`git log --pretty=format:"%s" -1`
-            echo "updateLog=$updateLog" >> $GITHUB_ENV
-    
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # 自动从GitHub获取的token
-      with:
-        tag_name: v1.0.${{ github.run_number }} # 使用运行号作为版本号
-        release_name: Release v1.0.${{ github.run_number }}
-        body: |
-          Changes in this Release
-          ${{ env.updateLog }}
-        draft: false
-        prerelease: false
     
     - name: Upload Release APK
       id: upload-release-asset 
