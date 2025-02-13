@@ -66,11 +66,11 @@ jobs:
     - name: Unzip X5.zip
       run: unzip X5.zip -d app/src/main
 
-    - name: Build with Gradle
+    - name: Build with Gradle X5
       run: |
         bash ./gradlew build --no-daemon
 
-    - name: Get short SHA
+    - name: Get short SHA X5
       run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
       
     - uses: actions/upload-artifact@v4
@@ -78,7 +78,7 @@ jobs:
           name: CCTV_Viewer_${{ env.SHORT_SHA }}-X5
           path: ./app/build/outputs/apk/debug/app-debug.apk
 
-    - name: Upload Release APK
+    - name: Upload Release APK X5
       id: upload-release-asset-x5
       uses: actions/upload-release-asset@v1
       env:
