@@ -88,3 +88,10 @@ jobs:
         asset_path: ./app/build/outputs/apk/debug/app-debug.apk # APK文件路径
         asset_name: app-x5.apk # 上传到GitHub的APK文件名
         asset_content_type: application/zip
+
+  buildx5:
+   runs-on: ubuntu-latest
+   needs: [build]
+   steps:
+   - name: get upload url
+     run: echo "upload_url=${{needs.build.outpus.upload_url}}"
