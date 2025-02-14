@@ -94,4 +94,4 @@ jobs:
    needs: [build]
    steps:
    - name: get upload url
-     run: echo "upload_url=${{needs.build.outpus.upload_url}}"
+     run: echo "upload_url=${{needs.build.create_release.outpus.upload_url}}"
